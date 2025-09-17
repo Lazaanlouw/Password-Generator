@@ -5,19 +5,27 @@ def handle_generate():
     length = view.ask_length()
     use_numbers = view.prompt_yes_no("Would you like your password to have numbers (y/n): ")
     use_symbols = view.prompt_yes_no("Would you like your password to have symbols (y/n): ")
-    save = view.prompt_yes_no("Would you like ot save your password (y/n): ")
+    save = view.prompt_yes_no("Would you like to save your password (y/n): ")
 
+    #generating password and strength
     password = model.generate_password(length, use_numbers, use_symbols)
-    view.show_generated_password(password)
+    strength = model.password_strength(password)
+
+    #showing password and strength after generated
+    view.show_password_strength(password, strength)
+
+    if view.prompt_yes_no("Copy password to clipboard? (y/n): "):
+        view.copy_to_clipboard(password)
 
     if save:
         model.save_password(password)
         view.display_message("Password saved to passwords.txt")
-
+#Fetching and showing all saved passwords
 def handle_view():
     passwords = model.view_passwords()
     view.show_saved_passwords(passwords)
 
+#The Main section(Handles the process of the system)
 def main():
     while True:
         view.display_menu()

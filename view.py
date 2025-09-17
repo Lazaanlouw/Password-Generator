@@ -1,3 +1,5 @@
+import pyperclip # pyright: ignore[reportMissingModuleSource]
+
 #User Interface input and output functions 
 
 #displaying the menu.
@@ -67,3 +69,13 @@ def user_password_delete(passwords: list):
 #Display messages
 def display_message(message: str):
     print(message)
+
+#Displays generated password and its strenngth
+def show_password_strength(password: str, strength: str):
+    print(f"\nPassword: {password}")
+    print(f"Strength: {strength}\n")
+
+#Displays password was copied to clipboard
+def copy_to_clipboard(password: str):
+    pyperclip.copy(password)
+    print("Password copied to clipboard!\n")

@@ -4,6 +4,7 @@
 import random
 import string
 
+
 def generate_password(length, use_numbers, use_symbols):
     letters = string.ascii_letters
     digits = string.digits
@@ -38,6 +39,7 @@ def view_passwords():
     except FileNotFoundError:
         return []
     
+#Deleting the selected password    
 def delete_selected_password(index: int):
      passwords = view_passwords()
      if index < 0 or index >= len(passwords):
@@ -48,3 +50,29 @@ def delete_selected_password(index: int):
             file.write(p + "\n")
      return True
 
+def password_strength(password: str):
+     has_letter = False
+     has_number = False
+     has_symbol = False
+
+#Checking Character types
+     for char in password:
+        if char.isalpha():
+            has_letter = True
+        elif char.isdigit():
+            has_number = True
+        else:
+            has_symbol = True
+#Checking if password is weak, medium or strong. Default is Medium.
+     length = len(password)
+
+     if length < 8 or (has_letter and not (has_number or has_symbol)):
+         return "Weak"
+     elif length <= 12 and ((has_letter and has_number) or (has_letter and has_symbol)):
+         return "Medium"
+     elif length > 12 and has_letter and has_number and has_symbol:
+         return "Strong"
+     else:
+         return "Medium"
+
+    
