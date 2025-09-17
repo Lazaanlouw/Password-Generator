@@ -1,2 +1,12 @@
-venv/ 
-__pycache__/ 
+#virtual env
+venv/
+
+#python cache 
+__pycache__/
+*.pyc
+
+# Passwords File
+passwords.txt
+
+# OS files
+.DS_Store
