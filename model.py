@@ -3,6 +3,8 @@
 #Importing Random characters and Strings like letters,numbers etc.
 import random
 import string
+import requests# pyright: ignore[reportMissingModuleSource]
+
 
 
 def generate_password(length, use_numbers, use_symbols):
@@ -76,3 +78,41 @@ def password_strength(password: str):
          return "Medium"
 
     
+def api_password(length=12, upper=True, lower=True, numbers=True, special=True):
+    url =  "https://passwordwolf.com/api/"
+    params = {
+        "length": length,
+        "upper": upper,
+        "lower": lower,
+        "numbers": numbers,
+        "special": special,
+    }
+
+    try:
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            data = response.json()
+            return data[0]["password"]
+        return None
+    except Exception as e:
+        print("Error fetching password:", e)
+        return None
+    
+def filter_password(password, upper, lower, numbers, special):
+    allowed_chars = ""
+    if upper:
+        allowed_chars += string.ascii_uppercase
+    if lower:
+        allowed_chars += string.ascii_lowercase
+    if numbers:
+        allowed_chars += string.digits
+    if special:
+        allowed_chars += string.punctuation
+
+
+    filtered = ''.join(c for c in password if c in allowed_chars)
+
+    while len(filtered) < len(password):
+        filtered += random.choice(allowed_chars)
+
+    return filtered

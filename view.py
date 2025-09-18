@@ -6,13 +6,14 @@ import pyperclip # pyright: ignore[reportMissingModuleSource]
 def display_menu():
     print("\n--- Password Generator Menu ---")
     print("1. Generate Password")
-    print("2. View Saved Passwords")
-    print("3. Delete a Password")
-    print("4. Exit")
+    print("2. Generate Password with API")
+    print("3. View Saved Passwords")
+    print("4. Delete a Password")
+    print("5. Exit")
 
 #Getting the choice made by the user at the menu.
 def user_menu_choice():
-    return input("Choose an option (1/2/3/4): ").strip()
+    return input("Choose an option (1/2/3/4/5): ").strip()
 
 #Getting the length of the password being created with error handling.
 def ask_length():
