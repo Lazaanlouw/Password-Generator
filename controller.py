@@ -15,7 +15,7 @@ def handle_generate():
     #showing password and strength after generated
     view.show_password_strength(password, strength)
 
-    if view.prompt_yes_no("Copy password to clipboard? (y/n): "):
+    if view.prompt_yes_no("Copy password to clipboard? "):
         view.copy_to_clipboard(password)
 
     if save:
@@ -52,7 +52,7 @@ def api_generate():
         model.save_password(password)
         view.display_message("Password saved to passwords.txt")
 
-    if view.prompt_yes_no("Copy password to clipboard? (y/n): "):
+    if view.prompt_yes_no("Copy password to clipboard? "):
         view.copy_to_clipboard(password)
 
     strength = model.password_strength(password)
