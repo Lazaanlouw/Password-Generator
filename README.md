@@ -42,4 +42,4 @@ This shows ability to interact with external services and process JSON responses
 
 Here’s an example of fetching a password from the API:
 
-![API Password fetching demonstration](assets\API.png)
+![API Password fetching demonstration](assets/API.png)
