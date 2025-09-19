@@ -1,4 +1,4 @@
-# Password Generator (MVC + API)
+# Password Generator (MVC + REST API)
 
 A Python password generator application using the MVC (Model-View-Controller) pattern. 
 Features include generating passwords locally, fetching passwords from an external API, saving passwords, copying to clipboard, and checking password strength.
@@ -40,6 +40,6 @@ This shows ability to interact with external services and process JSON responses
 
 ## API Fetching Screenshot
 
-Here’s an example of fetching a password from the API:
+Here’s an example of fetching a password from the REST API:
 
 ![API Password fetching demonstration](assets/API.png)
