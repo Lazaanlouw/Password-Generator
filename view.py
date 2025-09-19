@@ -1,6 +1,6 @@
 import pyperclip # pyright: ignore[reportMissingModuleSource]
 
-#User Interface input and output functions 
+#User Interface input and output functions. 
 
 #displaying the menu.
 def display_menu():
@@ -26,7 +26,7 @@ def ask_length():
         except ValueError:
             print("Please enter a valid Number.")
 
-#Asking the user yes or no questions base on numbers, symbols and if they want to save password.
+#Asking the user yes or no questions base on numbers, symbols and if they want to save password and if they want to copy the password to clipboard.
 def prompt_yes_no(prompt: str):
     while True:
         answer = input(f"{prompt} (y/n): ").strip().lower()
@@ -40,7 +40,7 @@ def prompt_yes_no(prompt: str):
 def show_generated_password(password: str):
     print("\nYour generated password is:", password, "\n")
 
-#Displaying all saved passwords
+#Displaying all saved passwords.
 def show_saved_passwords(passwords: list):
     if not passwords:
         print("\nNo saved passwords found.\n")
@@ -50,7 +50,7 @@ def show_saved_passwords(passwords: list):
         print(f"{i}. {p}")
     print()
 
-#Displaying saved passwords and then prompts user to choose hwich password to delete.
+#Displaying saved passwords and then prompts user to choose which password to delete.
 def user_password_delete(passwords: list):
     print("\nSaved Passwords:")
     for i, p in enumerate(passwords, 1):
@@ -67,16 +67,16 @@ def user_password_delete(passwords: list):
         else:
             print(f"Please choose a number between 1 and {len(passwords)}.")
 
-#Display messages
+#Display messages.
 def display_message(message: str):
     print(message)
 
-#Displays generated password and its strenngth
+#Displays Generated password and its Strength.
 def show_password_strength(password: str, strength: str):
     print(f"\nPassword: {password}")
     print(f"Strength: {strength}\n")
 
-#Displays password was copied to clipboard
+#Displays: "password was copied to clipboard".
 def copy_to_clipboard(password: str):
     pyperclip.copy(password)
     print("Password copied to clipboard!\n")

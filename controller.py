@@ -1,31 +1,35 @@
 from . import model
 from . import view
 
-
+#Function called in main() to handle the password and strength generation locally.
 def handle_generate():
     length = view.ask_length()
     use_numbers = view.prompt_yes_no("Would you like your password to have numbers (y/n): ")
     use_symbols = view.prompt_yes_no("Would you like your password to have symbols (y/n): ")
     save = view.prompt_yes_no("Would you like to save your password (y/n): ")
 
-    #generating password and strength
+    #generating password and strength.
     password = model.generate_password(length, use_numbers, use_symbols)
     strength = model.password_strength(password)
 
-    #showing password and strength after generated
+    #showing password and strength after generated.
     view.show_password_strength(password, strength)
 
+    #Prompts the user to copy password to clipboard.
     if view.prompt_yes_no("Copy password to clipboard? "):
         view.copy_to_clipboard(password)
 
+    #Prompts the user to save the password in a .txt file.
     if save:
         model.save_password(password)
         view.display_message("Password saved to passwords.txt")
-#Fetching and showing all saved passwords
+
+#Fetching and showing all saved passwords.
 def handle_view():
     passwords = model.view_passwords()
     view.show_saved_passwords(passwords)
 
+#API Generated Password.
 def api_generate():
     length = view.ask_length()
     use_numbers = view.prompt_yes_no("Should your password include Numbers (y/n)? ")
@@ -58,7 +62,7 @@ def api_generate():
     strength = model.password_strength(password)
     view.show_password_strength(password, strength)
 
-#The Main section(Handles the process of the system)
+#The main() function handles the process of the system.
 def main():
     while True:
         view.display_menu()

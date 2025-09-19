@@ -1,12 +1,14 @@
-#Data and logic: Password Generation and File I/O.
+#Data and logic: Password Generation and File I/O.API Password Generation with filtering. 
 
 #Importing Random characters and Strings like letters,numbers etc.
 import random
 import string
+
+#This is for the API Requests.
 import requests# pyright: ignore[reportMissingModuleSource]
 
 
-
+#Generating a password locally.
 def generate_password(length, use_numbers, use_symbols):
     letters = string.ascii_letters
     digits = string.digits
@@ -27,12 +29,12 @@ def generate_password(length, use_numbers, use_symbols):
     password = ''.join(random.choice(characters) for _ in range(length))
     return password
 
-#Saving password to a .txt file
+#Saving password to a .txt file.
 def save_password(password):
      with open("passwords.txt", "a") as file:
           file.write(password + "\n")
 
-#viewing the .txt file with error handling
+#viewing the .txt file with error handling.
 def view_passwords():
     try:
           with open("passwords.txt", "r")as file:
@@ -41,7 +43,7 @@ def view_passwords():
     except FileNotFoundError:
         return []
     
-#Deleting the selected password    
+#Deleting the selected password.    
 def delete_selected_password(index: int):
      passwords = view_passwords()
      if index < 0 or index >= len(passwords):
@@ -52,12 +54,13 @@ def delete_selected_password(index: int):
             file.write(p + "\n")
      return True
 
+#
 def password_strength(password: str):
      has_letter = False
      has_number = False
      has_symbol = False
 
-#Checking Character types
+#Checking Character types in password.
      for char in password:
         if char.isalpha():
             has_letter = True
@@ -65,7 +68,8 @@ def password_strength(password: str):
             has_number = True
         else:
             has_symbol = True
-#Checking if password is weak, medium or strong. Default is Medium.
+
+#Checking the strength of the password. Default is Medium.
      length = len(password)
 
      if length < 8 or (has_letter and not (has_number or has_symbol)):
@@ -77,7 +81,7 @@ def password_strength(password: str):
      else:
          return "Medium"
 
-    
+#API generated password.    
 def api_password(length=12, upper=True, lower=True, numbers=True, special=True):
     url =  "https://passwordwolf.com/api/"
     params = {
@@ -98,6 +102,7 @@ def api_password(length=12, upper=True, lower=True, numbers=True, special=True):
         print("Error fetching password:", e)
         return None
     
+#Filters the API generated password to follow the choices made by the user(Numbers, Symbols).  
 def filter_password(password, upper, lower, numbers, special):
     allowed_chars = ""
     if upper:
