@@ -4,9 +4,9 @@ from . import view
 #Function called in main() to handle the password and strength generation locally.
 def handle_generate():
     length = view.ask_length()
-    use_numbers = view.prompt_yes_no("Would you like your password to have numbers (y/n): ")
-    use_symbols = view.prompt_yes_no("Would you like your password to have symbols (y/n): ")
-    save = view.prompt_yes_no("Would you like to save your password (y/n): ")
+    use_numbers = view.prompt_yes_no("Would you like your password to have numbers? ")
+    use_symbols = view.prompt_yes_no("Would you like your password to have symbols? ")
+    save = view.prompt_yes_no("Would you like to save your password? ")
 
     #generating password and strength.
     password = model.generate_password(length, use_numbers, use_symbols)
@@ -32,11 +32,11 @@ def handle_view():
 #API Generated Password.
 def api_generate():
     length = view.ask_length()
-    use_numbers = view.prompt_yes_no("Should your password include Numbers (y/n)? ")
-    use_symbols = view.prompt_yes_no("Should your password include Symbols (y/n) ")
-    use_upper = view.prompt_yes_no("Should your password include Uppercase Letters (y/n) ")
-    use_lower = view.prompt_yes_no("Should your password include Lowercase Letters (y/n) ")
-    save = view.prompt_yes_no("Would you like to save your password (y/n): ")
+    use_numbers = view.prompt_yes_no("Should your password include Numbers? ")
+    use_symbols = view.prompt_yes_no("Should your password include Symbols? ")
+    use_upper = view.prompt_yes_no("Should your password include Uppercase Letters? ")
+    use_lower = view.prompt_yes_no("Should your password include Lowercase Letters? ")
+    save = view.prompt_yes_no("Would you like to save your password? ")
 
     password = model.api_password(
         length=length,

@@ -32,7 +32,7 @@ def prompt_yes_no(prompt: str):
         answer = input(f"{prompt} (y/n): ").strip().lower()
         if answer in ("y", "yes"):
             return True
-        if answer in ("n", "yes"):
+        if answer in ("n", "no"):
             return False
         print("Invalid input. Please type 'y' or 'n'.")
 
